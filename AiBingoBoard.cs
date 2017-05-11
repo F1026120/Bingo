@@ -19,55 +19,31 @@ public class AiBingoBoard : BingoBoard
         int NextNumber = -1;
         int col = 5;
         int row = 5;
+        int bound = 5; //正方形邊長
         //計算每個位置價值(point)
-        for (int c = 0; c < 5; c++)
+        for (int c = 0; c < bound; c++)
         {
-            for (int r = 0; r < 5; r++)
+            for (int r = 0; r < bound; r++)
             {
                 point[c, r] = 0;
-                if (m_Board[c, r] == 0)
+                if (m_Board[c, r] == 0)//如果以選過則不用判斷
                     continue;
-                else if (c == 2 && c == r)//在正中央的交點
+                for (int k = 0; k < bound; k++)
                 {
-                    for (int k = 0; k < 5; k++)
+                    if (m_Board[c, k] == 0) point[c, r] += 1;//判斷row方向之已選過的點 
+                    if (m_Board[k, r] == 0) point[c, r] += 1;//判斷col方向之已選過的點
+                    if (c == r || (c + r) == (bound-1))//如果為斜線上的點
                     {
-                        if (m_Board[c, k] == 0)
-                            point[c, r] += 1;
-                        if (m_Board[k, r] == 0)
-                            point[c, r] += 1;
-                        if (m_Board[k, k] == 0)
-                            point[c, r] += 1;
-                        if (m_Board[k, 4 - k] == 0)
-                            point[c, r] += 1;
-                    }
+                        if (c == r)//左上向右下的斜線
+                            if (m_Board[k, k] == 0) point[c, r] += 1;
+                        if ((c + r) == (bound-1))//左下向右上的斜線
+                            if (m_Board[k, (bound-1) - k] == 0) point[c, r] += 1;
 
-                    point[c, r] += 12;//交點加權12
-                }
-                else if (c == row || (c + r) == 4)//在斜線上的點
-                {
-                    for (int k = 0; k < 5; k++)
-                    {
-                        if (m_Board[c, k] == 0)
-                            point[c, r] += 1;
-                        if (m_Board[k, r] == 0)
-                            point[c, r] += 1;
-                        if (m_Board[k, k] == 0)
-                            point[c, r] += 1;
-                        if (m_Board[k, 4 - k] == 0)
-                            point[c, r] += 1;
-                    }
-                    point[c, r] += 8;//斜線上加權8
-                }
-                else
-                {
-                    for (int k = 0; k < 5; k++)
-                    {
-                        if (m_Board[c, k] == 0)
-                            point[c, r] += 1;
-                        if (m_Board[k, r] == 0)
-                            point[c, r] += 1;
                     }
                 }
+                if (c == r || (c + r) == (bound-1)) point[c, r] += 8;//斜線上的點加權8
+                if (c == r && (c + r) == (bound-1)) point[c, r] += 4;//中心交點 額外加權 4
+
 
             }
         }
