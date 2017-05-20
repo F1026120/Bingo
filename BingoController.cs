@@ -202,7 +202,7 @@ public class BingoController : MonoBehaviour
         if (m_WhichOnePlay != WhichOne.Player)
             return;
         //Debug.Log("OnPlayerBtnClick:" + theButton.gameObject.name);
-        
+
         // 取得按鈕上的值
         Text theText = theButton.GetComponentInChildren<Text>();
         
@@ -215,5 +215,20 @@ public class BingoController : MonoBehaviour
 			m_bNeedFlush = true;
 			m_WhichOnePlay = WhichOne.Ai;
         }
+    }
+    public  void ChangeButtonColor(int Number)
+    {
+        Button theButton;
+        for(int c =0;c<5;c++)
+            for(int r = 0; r < 5; r++)
+            {
+                if (m_Board[i, j] == Value)
+                    theButton = m_ComGrid[c, r];
+            }
+        
+        //Change Button color
+        ColorBlock cb = theButton.colors;
+        cb.normalColor = Color.red;
+        theButton.colors = cb;
     }
 }

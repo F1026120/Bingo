@@ -35,9 +35,9 @@ public class AiBingoBoard : BingoBoard
                     if (c == r || (c + r) == (bound-1))//如果為斜線上的點
                     {
                         if (c == r)//左上向右下的斜線
-                            if (m_Board[k, k] == 0) point[c, r] += 1;
-                        if ((c + r) == (bound-1))//左下向右上的斜線
-                            if (m_Board[k, (bound-1) - k] == 0) point[c, r] += 1;
+                            if (m_Board[k, k] == 0) point[c, r] += 2;
+                        if ((c + r) == (bound-1))//左下向 右上的斜線
+                            if (m_Board[k, (bound-1) - k] == 0) point[c, r] += 2;
 
                     }
                 }
