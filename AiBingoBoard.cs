@@ -26,7 +26,7 @@ public class AiBingoBoard : BingoBoard
             for (int r = 0; r < bound; r++)
             {
                 point[c, r] = 0;
-                if (m_Board[c, r] == 0)//如果以選過則不用判斷
+                if (m_Board[c, r] == 0)//如果已選過則不用判斷
                     continue;
                 for (int k = 0; k < bound; k++)
                 {
