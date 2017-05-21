@@ -23,7 +23,7 @@ public class BingoController : MonoBehaviour
     GameObject[,] m_ComGrid;    // 電腦使用的Bingo盤
     GameObject[,] m_PlayerGrid;    // 玩家使用的Bingo盤
     Text m_PlayerLine;
-    Text m_ComLine; 
+    Text m_ComLine;
 
 
 	// 開始時
@@ -40,6 +40,7 @@ public class BingoController : MonoBehaviour
         m_PlayerBoard.InitBoard();
         m_ComBoard.InitBoard();
         m_bNeedFlush = true;
+
 	}
 	
 	// GameLoop
@@ -49,6 +50,7 @@ public class BingoController : MonoBehaviour
         if(m_WhichOnePlay == WhichOne.Ai)
         {
             int NextNumber = m_ComBoard.GetNextNumber();
+            ChangeButtonColor(NextNumber);
             m_ComBoard.SetNumber(NextNumber);
             m_PlayerBoard.SetNumber(NextNumber);
             m_bNeedFlush = true;
@@ -209,26 +211,42 @@ public class BingoController : MonoBehaviour
         // 轉換成數字
         int Number = Int32.Parse(theText.text);
         if (Number > 0)
-        { 
+        {
+            ColorBlock thecolors;
+            thecolors = theButton.colors;
+            thecolors.highlightedColor = Color.green;
+            theButton.colors = thecolors;
+
+            ChangeButtonColor(Number);
             m_PlayerBoard.SetNumber(Number); // 設定為0
             m_ComBoard.SetNumber(Number);
+            
 			m_bNeedFlush = true;
 			m_WhichOnePlay = WhichOne.Ai;
         }
     }
-    public  void ChangeButtonColor(int Number)
+    public void ChangeButtonColor(int Number)
     {
+        ColorBlock thecolors;
+        GameObject BtnObj;
         Button theButton;
-        for(int c =0;c<5;c++)
+        
+        for(int c = 0;c<5;c++)
             for(int r = 0; r < 5; r++)
             {
-                if (m_Board[i, j] == Value)
-                    theButton = m_ComGrid[c, r];
+                if(m_PlayerBoard.m_Board[c,r] == Number)
+                {
+                    BtnObj = m_PlayerGrid[c, r];
+                    theButton = BtnObj.GetComponent<Button>();
+                    thecolors = BtnObj.GetComponent<Button>().colors;
+                    thecolors.normalColor = Color.red;
+                    theButton.colors = thecolors;
+                }
+
             }
-        
-        //Change Button color
-        ColorBlock cb = theButton.colors;
-        cb.normalColor = Color.red;
-        theButton.colors = cb;
+
+
     }
+
+    
 }
