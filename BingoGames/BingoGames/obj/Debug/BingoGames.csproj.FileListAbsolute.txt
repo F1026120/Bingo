@@ -1,0 +1,6 @@
+C:\Users\mays2\OneDrive\文件\Visual Studio 2017\Projects\BingoGames\BingoGames\obj\Debug\BingoGames.csprojResolveAssemblyReference.cache
+C:\Users\mays2\OneDrive\文件\Visual Studio 2017\Projects\BingoGames\BingoGames\bin\Debug\BingoGames.exe.config
+C:\Users\mays2\OneDrive\文件\Visual Studio 2017\Projects\BingoGames\BingoGames\bin\Debug\BingoGames.exe
+C:\Users\mays2\OneDrive\文件\Visual Studio 2017\Projects\BingoGames\BingoGames\bin\Debug\BingoGames.pdb
+C:\Users\mays2\OneDrive\文件\Visual Studio 2017\Projects\BingoGames\BingoGames\obj\Debug\BingoGames.exe
+C:\Users\mays2\OneDrive\文件\Visual Studio 2017\Projects\BingoGames\BingoGames\obj\Debug\BingoGames.pdb
